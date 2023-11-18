@@ -1,0 +1,210 @@
+
+
+#body {
+    text-align: center;
+}
+
+#title {
+    
+    font-size: 50px;
+    color: #5869e7db;
+}
+
+
+.textBox {
+    width: 400px;
+    height: 40px;
+    margin-bottom: 2px;
+    border-radius: 10px;
+}
+
+#loginButton {
+    /* width: 408px; */
+    width: 400px;
+    height: 40px;
+    font-size: large;
+    border-radius: 10px;
+    cursor: pointer;
+    border-color: rgb(150, 148, 157);
+    background-color: #5869e7db;
+    color: white;
+}
+
+#menuBox {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.menu {
+    cursor: pointer;
+    color: rgb(150, 148, 157);
+}
+
+#loginTable {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#table {
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 66px;
+}
+
+#homeButton {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    top:30px;
+    left: 5%;
+    cursor: pointer;
+}
+
+#header {
+    display: flex;
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    z-index: 1;
+}
+
+#headerCenter {
+    padding-left: 140px;
+    display: flex;
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+    width:500px;
+}
+
+
+.headerButton {
+    cursor: pointer;
+    margin-left: 10%;
+    width: 100px;
+    height: 40px;
+    background-color: #5869e7db;
+    color: white;
+    border-color: rgb(150, 148, 157);
+}
+
+
+#profile {
+    width: 50px;
+    height: 50px;
+    margin-right: 5%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#postBox {
+    display: flex;
+    flex-direction: column-reverse;
+    border: 1px solid rgb(150, 148, 157);
+    width: 1100px;
+    min-height: 400px;
+    height: auto;
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: #5869e7db;
+}
+
+#post {
+    margin-left: auto;
+    margin-right: auto;
+    width: 1096px;
+    height: 100px;
+    background-color: white;
+    border: 2px solid rgb(150, 148, 157);
+    color: #5869e7db;
+    text-align: start;
+}
+#postTitle {
+    margin-left: 86px;
+    text-align:right;
+    width: fit-content;
+    font-size: 28pt;
+    font-weight: bold;
+    text-align:start;
+    cursor: pointer;
+}
+
+#userId {
+    margin-top: 10px;
+    margin-left: 96px;
+    width: fit-content;
+    font-size: 22px;
+    text-align:start;
+}
+#makePostHeader {
+    display: flex;
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+}
+#makePostBody {
+    background-color: #5869e7db;
+    text-align: center;
+}
+#makePostTitle {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    border: 2px solid rgb(150, 148, 157);
+    width: 1100px;
+    height: 80px;
+    font-size: 24pt;
+    text-align: center;
+    margin-top: 75px;
+}
+
+#makePostContent {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    text-align: center;
+    border: 2px solid rgb(150, 148, 157);
+    width: 1100px;
+    min-height: 600px;
+}
+
+
+
+#content {
+    width: 1100px;
+    min-height: 500px;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#buttonBox {
+    margin-left: 700px;
+    width: 300px;
+    background-color: aqua;
+}
+
+.etcButton {
+    cursor: pointer;
+    margin-left: 10%;
+    width: 100px;
+    height: 40px;
+    background-color: #5869e7db;
+    color: white;
+    border-color: rgb(150, 148, 157);
+}
