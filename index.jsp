@@ -6,12 +6,12 @@
     <title>7weekHomework</title>
     <link rel="stylesheet" type="text/css" href="6weekIndex.css">
 </head>
-<body id="body">
+<body>
     <img src="image/home.png" id="homeButton" onclick="homeEvent()">
-    <h1 id="title">login</h1>
+    <h1 id="title">logIn</h1>
 
     <!-- action="이동하고싶은 파일명" -->
-    <form action="action/loginAction.jsp" onsubmit="return nullCheckEvent()">
+    <form action="action/logInAction.jsp" onsubmit="return exceptionCheckEvent()">
 		<!-- input 태그는 다음페이지에 전달 되는 값이 된다. -->
         <table id="loginTable">
             <tr>

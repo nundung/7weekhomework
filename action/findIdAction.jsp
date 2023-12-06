@@ -8,14 +8,16 @@
 <%
     request.setCharacterEncoding("UTF-8");
 
-    String phonenumberValue = request.getParameter("phonenumber_Value");
+    String name = request.getParameter("name");
+    String phonenumber = request.getParameter("phonenumber");
 
     Class.forName("com.mysql.jdbc.Driver");
 	Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/7weekhomework","stageus","1234");
 
-    String sql = "SELECT * FROM account WHERE phonenumber=?";
+    String sql = "SELECT * FROM account WHERE name = ? AND phonenumber = ?";
     PreparedStatement query = connect.prepareStatement(sql);
-    query.setString(1, phonenumberValue);
+    query.setString(1, name);
+    query.setString(2, phonenumber);
 
     //return값을 저장해줌
     ResultSet result = query.executeQuery();
