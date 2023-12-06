@@ -10,21 +10,31 @@
     //전페이지에서 온 데이터에 대해서 인코딩 설정
     request.setCharacterEncoding("UTF-8");
 
-    //값을 받아서 변수에 저장해 준다.
-    String idValue = request.getParameter("idValue");
-    String pwValue = request.getParameter("pwValue");
+    String id = null;
+    String pw = null;
 
-    // Connector 파일 찾기
-    Class.forName("com.mysql.jdbc.Driver");
-    //데이터베이스 연결
-    Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/7weekhomework","stageus","1234");
+    Connection connect = null;
+    String sql = null;
+    PreparedStatement query = null;
 
+    try {
+        //값을 받아서 변수에 저장해 준다.
+        id = request.getParameter("id");
+        pw = request.getParameter("pw");
+
+        // Connector 파일 찾기
+        Class.forName("com.mysql.jdbc.Driver");
+        //데이터베이스 연결
+        connect = DriverManager.getConnection("jdbc:mysql://localhost/7weekhomework","stageus","1234");
+
+
+    }
     //SQL(쿼리문) 만들기
 	//SQL문은 다른 프로그래밍 언어 기준에는 단순히 문자열임 따라서 String을 사용
 	//미리 만들어놓은 test테이블에 입력받은 값을 넣도록 한다.
-    String sql = "SELECT * FROM account WHERE id=?";
-    PreparedStatement query = connect.prepareStatement(sql);
-    query.setString(1, idValue);
+    sql = "SELECT * FROM account WHERE id=? AND pw=?";
+    query = connect.prepareStatement(sql);
+    query.setString(1, id);
 
 	//return값을 저장해줌
     ResultSet result = query.executeQuery();
