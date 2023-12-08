@@ -1,0 +1,42 @@
+main {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#title {
+    font-size: 50px;
+    color: #5869e7db;
+}
+
+.input {
+    width: 400px;
+    height: 40px;
+    margin-bottom: 2px;
+    border-radius: 10px;
+}
+
+#loginButton {
+    /* width: 408px; */
+    width: 400px;
+    height: 40px;
+    font-size: large;
+    border-radius: 10px;
+    cursor: pointer;
+    border-color: rgb(150, 148, 157);
+    background-color: #5869e7db;
+    color: white;
+}
+
+#menuSection {
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.menu {
+    cursor: pointer;
+    color: rgb(150, 148, 157);
+}

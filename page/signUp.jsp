@@ -5,80 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
     <link rel="stylesheet" type="text/css" href="../6weekIndex.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body id="body">
     <img src="../image/home.png" id="homeButton" onclick="homeEvent()">
     <h1 id="title">회원가입</h1>
-    <form id="signupForm" action="../action/signupAction.jsp" onsubmit="return nullCheckEvent()">
+    <form id="signupForm" action="../action/signUpAction.jsp" onsubmit="return nullCheckEvent()">
         <table id="table">
             <tr>
                 <td>이름</td>
-                <td><input type="text" name="name_Value" class="textBox" id="0"></td>
+                <td><input type="text" name="name" class="input"></td>
             </tr>
             <tr>
                 <td>아이디</td>
-                <td><input type="text"  name="id_Value" id="1"class="textBox"></td>
-                <td><input type="button" id="idCheck_button" value="ID 중복 검사" onclick="idCheckEvent()"></td>
+                <td><input type="text"  name="id" class="input" id="id" onchange="resetCheckIdEvent()"></td>
+                <td><input type="button" id="idCheckButton" value="ID 중복 검사" onclick="checkIdEvent()"></td>
             </tr>
             <tr>
                 <td><div id="result"></div></td>
             </tr>
             <tr>
                 <td>비밀번호</td>
-                <td><input type="text" name="pw_Value" class="textBox" id="2"></td>
+                <td><input type="text" name="pw" class="input" id="pw"></td>
             </tr>
             <tr>
                 <td>비밀번호확인</td>
-                <td><input type="text" name="pw_Check" class="textBox" id="3"></td>
+                <td><input type="text" name="pwCheck" class="input" id="pwCheck"></td>
             </tr>
             <tr>
                 <td>이메일</td>
-                <td><input type="text" name="email_Value" class="textBox" id="4"></td>
+                <td><input type="text" name="email" class="input"></td>
             </tr>
             <tr>
                 <td>전화번호</td>
-                <td><input type="text" name="phonenumber_Value" class="textBox" id="5"></td>
-            </tr>
-            <tr>
-                <td>생년월일</td>
-                <td><input type="text" name="birth_Value" class="textBox"></td>
+                <td><input type="text" name="phonenumber" class="input"></td>
             </tr>
         </table>
         <input type="submit" value="회원가입">
     </form>
     <script>
-        function idCheckEvent() {
-            var idValue = document.getElementById("1").value;
+        var checkId = false;
+        function checkIdEvent() {
+            var idValue = document.getElementById("id").value;
             if(idValue.trim() == ""){
                 alert("아이디값을 입력해주세요.");
                 return;
             }
-            if(idValue.length < 5 || idValue.length > 12){
-                alert("아이디는 5자 이상 12자 이하로 입력해주세요.")
-                return;
-            }
             let options = "toolbar=no,scrollbars=no,resizable=yes,status=no,menubar=no,width=600, height=400, top=0,left=0";
-            var ret = window.open("../action/checkIdAction.jsp?idValue="+ idValue, "아이디중복체크", options)
-        }
-        function homeEvent() {
-            location.href = "post.jsp"
-        }
-        function nullCheckEvent() {
-            const phoneNumberCheck = /^01([0|1|6|7|8|9])-?([0-9{3,4})-?([0-9]{4})$/;
-            var phoneNumberValue = document.getElementById("5").value;
-            if (!phoneNumberCheck.test(phoneNumberValue)) {
-                alert("유효한 전화번호를 입력해주세요.");
-                return false;
+            var pop = window.open("../action/checkIdAction.jsp?id="+ idValue, "아이디중복체크", options)
+        
+            pop.onunload = function() {
+                if(checkId == true) {
+                    var idCheckButton = document.getElementById("idCheckButton")
+                    idCheckButton.disabled = true;
+                    idCheckButton.style.backgroundColor = "gray";
+                }
             }
+        }   
+        function resetCheckIdEvent() {
+            var checkedId = false;
+            idCheckButton.disabled = false;
+            idCheckButton.style.backgroundColor = "";
+        }
 
-            for (var i=0; i< 6; i++) {
-                var value = document.getElementById(i).value
-                if(value == "null" || value == "") {
+        function nullCheckEvent() {
+            var input = document.getElementsByClassName("input");
+            var pw = document.getElementById("pw").value;
+            var pwCheck = document.getElementById("pwCheck").value;
+            for (var i=0; i< input.length; i++) {
+                var value = input[i].value;
+                if(value == "") {
                     alert("필수항목을 입력해주세요.");
                     return false;
-                } 
-                
+                }
+            } 
+            if(checkId === false) {
+                alert("아이디 중복체크를 해주세요.");
+                return false;
+            }
+            if(pw !== pwCheck) {
+                alert("비밀번호 확인값이 일치하지 않습니다.");
+                return false;
             }
         }
     </script>

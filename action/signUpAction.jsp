@@ -3,38 +3,43 @@
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.SQLException" %>
 
 
 <%
     request.setCharacterEncoding("UTF-8");
 
-    String nameValue = request.getParameter("name_Value");
-    String idValue = request.getParameter("id_Value");
-    String pwValue = request.getParameter("pw_Value");
-    String pwCheck = request.getParameter("pw_Check");
-    String emailValue = request.getParameter("email_Value");
-    String phonenumberValue = request.getParameter("phonenumber_Value");
-    String birthValue = request.getParameter("birth_Value");
+    Connection connect = null;
+    PreparedStatement query = null;
 
+    try{
+        String id = request.getParameter("id");
+        String pw = request.getParameter("pw");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String phonenumber = request.getParameter("phonenumber");
 
-    Class.forName("com.mysql.jdbc.Driver");
-    Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/7weekhomework","stageus","1234");
+        Class.forName("com.mysql.jdbc.Driver");
+        connect = DriverManager.getConnection("jdbc:mysql://localhost/7weekhomework","stageus","1234");
 
-    String sql = "INSERT INTO account (name, id, pw, email, phonenumber, birth) VALUES (?, ?, ?, ?, ?, ?)";
-	PreparedStatement query = connect.prepareStatement(sql);
-	query.setString(1, nameValue);
-	query.setString(2, idValue);
-    query.setString(3, pwValue);
-    query.setString(4, emailValue);
-	query.setString(5, phonenumberValue);
-    if (birthValue == "") {
-        query.setNull(6, java.sql.Types.DATE);
+        String sql = "INSERT INTO account (id, pw, name, email, phonenumber) VALUES (?, ?, ?, ?, ?)";
+        query = connect.prepareStatement(sql);
+        query.setString(1, id);
+        query.setString(2, pw);
+        query.setString(3, name);
+        query.setString(4, email);
+        query.setString(5, phonenumber);
+
+        query.executeUpdate();
     }
-	else {
-        query.setString(6, birthValue);
+    catch (SQLException e) {
+        out.println("<div>예상치 못한 오류가 발생했습니다.</div>");
+        return;
     }
-
-    query.executeUpdate();
+    finally {
+        if (connect != null) connect.close();
+        if (query != null) query.close();
+    }
 %>
 
 <head>
@@ -44,8 +49,6 @@
 </head>
 <body>
     <script>
-        var birth = "<%=birthValue%>";
-        console.log(birth)
             alert("회원가입에 성공하였습니다.")
             location.href="../index.jsp";
     </script>

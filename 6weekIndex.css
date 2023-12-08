@@ -4,7 +4,6 @@ body {
 }
 
 #title {
-    
     font-size: 50px;
     color: #5869e7db;
 }
@@ -205,4 +204,8 @@ body {
     background-color: #5869e7db;
     color: white;
     border-color: rgb(150, 148, 157);
+}
+
+#idCheckButton {
+    background-color: #5869e7db;
 }

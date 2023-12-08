@@ -4,29 +4,49 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.PreparedStatement" %>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.SQLException" %>
 
 <%
 	request.setCharacterEncoding("UTF-8");
     
-	String idValue = request.getParameter("idValue");
-    if(idValue == "" || idValue == " ") {
-        idValue = null;
+    Connection connect = null;
+    PreparedStatement query = null;
+    ResultSet result = null;
+
+    boolean idCheck = false;
+
+    try {
+        String id = request.getParameter("id");
+
+        if(id == null) {
+            out.println("<div>올바르지 않은 접근입니다.</div>");
+            return;
+        }
+
+        Class.forName("com.mysql.jdbc.Driver");
+        connect = DriverManager.getConnection("jdbc:mysql://localhost/7weekhomework","stageus","1234");
+
+        String sql = "SELECT * FROM account WHERE id=?";
+        query = connect.prepareStatement(sql);
+        query.setString(1, id);
+
+        result = query.executeQuery();
+
+        if(result.next()) {
+            idCheck = false;
+        }
+        else {
+            idCheck = true;
+        }
     }
-
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/7weekhomework","stageus","1234");
-
-    String sql = "SELECT * FROM account WHERE id=?";
-    PreparedStatement query = connect.prepareStatement(sql);
-    query.setString(1, idValue);
-
-    int idCheck = 0;
-    ResultSet result = query.executeQuery();
-    if(result.next()) {
-        idCheck = 0;
+    catch (SQLException e) {
+        out.println("<div>예상치 못한 오류가 발생했습니다.</div>");
+        return;
     }
-    else {
-        idCheck = 1;
+    finally {
+        if (connect != null) connect.close();
+        if (query != null) query.close();
+        if (result != null) result.close();
     }
 
 %>
@@ -39,19 +59,15 @@
 <body>
 
     <script>
-        var idValue = "<%=idValue%>";
         var idCheck = "<%=idCheck%>";
-        console.log(idValue);
-        console.log(idCheck);
-        // 예: idCheck가 0인 경우 중복된 아이디, 1인 경우 사용 가능한 아이디로 처리
-        if (idCheck == 0) {
-            alert("중복된 아이디입니다.");
-        } else if (idCheck == 1) {
+        if (idCheck === "true") {
             alert("사용 가능한 아이디입니다.");
+            window.opener.checkId = true;
+        } 
+        else {
+            alert("이미 존재하는 아이디입니다.");
+            window.opener.checkId = false;
         }
-        if (idValue == null) {
-            alert("값을 입력해주세요.")
-        }
+        window.close()
     </script>
-
 </body>
