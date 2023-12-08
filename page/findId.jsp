@@ -7,25 +7,25 @@
     <link rel="stylesheet" type="text/css" href="../6weekIndex.css">
 </head>
 <body id="body">
-    <img src="../image/home.png" id="homeButton" onclick="homeEvent()">
     <h1 id="title">아이디 찾기</h1>
     <!-- onsubmit은 form이 제출될 때 실행되는 이벤트 -->
     <form action="../action/findIdAction.jsp" onsubmit=" return nullCheckEvent()">
         <table id="table">
             <tr>
+                <td>이름</td>
+                <td><input type="text" name="name" class="input"></td>
+            </tr>
+            <tr>
                 <td>전화번호</td>
-                <td><input type="text" name="phonenumber_Value" class="textBox" id="phonenumber_Id"></td>
+                <td><input type="text" name="phonenumber" class="input" id="phonenumber"></td>
             </tr>
         </table>
         <input type="submit" value="아이디 찾기">
     </form>
     <script>
-        function homeEvent() {
-            location.href = "post.jsp"
-        }
         function nullCheckEvent() {
-            var phonenumberValue = document.getElementById("phonenumber_Id").value
-            if(phonenumberValue == null || phonenumberValue == "") {
+            var phonenumberValue = document.getElementById("phonenumber").value
+            if(phonenumberValue.trim() === "") {
                 alert("값을 입력해주세요.");
                 return false;
             }

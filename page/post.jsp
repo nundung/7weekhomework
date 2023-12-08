@@ -73,11 +73,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판</title>
-    <link rel="stylesheet" type="text/css" href="../6weekIndex.css">
+    <link rel="stylesheet" type="text/css" href="../css/common.css">
+    <link rel="stylesheet" type="text/css" href="../css/post.css">
 </head>
-<body id="body">
+<body>
     <div id="header">
         <div id="headerLeft">
+            <img src="../image/home.png" id="homeButton" onclick="homeEvent()">
+            <input type="button" value="로그아웃" class="headerButton" onclick="logOutEvent()">
         </div>
         <div id="headerCenter">
             <h1 id="title" onclick>게시판</h1>
@@ -95,38 +98,19 @@
         button.className = "headerButton";
         button.id = "login/out";
 
-        if(idValue == "0" || idValue == 0) {
-            button.innerText = "로그인";
-            button.addEventListener("click", function() {
-                location.href = "../index.jsp";
-            });
-            headerLeft.appendChild(button);
+        function homeEvent() {
+            location.reload();
         }
-        else {
-            button.innerText = "로그아웃";
-            button.addEventListener("click", function() {
-                location.href = "../action/logoutAction.jsp";
-            });
-            headerLeft.appendChild(button);
+
+        function logOutEvent() {
+            location.href = "../action/logOutAction.jsp";
         }
 
         function makePostEvent() {
-            if(idValue == 0) {
-                alert("로그인 후 작성가능합니다.");
-                location.href ="../index.jsp";
-            }
-            else {
-                location.href = "uploadPost.jsp";
-            }
+            location.href = "makePost.jsp";
         }
         function mypageEvent() {
-            if(idValue == 0) {
-                alert("로그인 후 이용가능합니다.")
-                location.href="../index.jsp";
-            }
-            else {
-                location.href = "mypage.jsp";
-            }
+            location.href = "myPage.jsp";
         }
 
         var postList = <%=postList%>;

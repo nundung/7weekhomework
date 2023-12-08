@@ -18,35 +18,33 @@
     <title>글쓰기</title>
     <link rel="stylesheet" type="text/css" href="../6weekIndex.css">
 </head>
-<body id="body">
+<body>
     <div id="header">
         <div id="headerLeft">
             <img src="../image/home.png" id="homeButton" onclick="homeEvent()">
         </div>
         <div id="headerCenter">
             <h1 id="title">글쓰기</h1>
-            <button class="headerButton" onclick="return uploadPostEvent()">등록</button>
+            <button class="headerButton" onclick="return makePostEvent()">등록</button>
         </div>
         <img src="../image/profile.png" id="profile" onclick="mypageEvent()">
     </div>
-    <form action = "../action/uploadPostAction.jsp" id="form">
-        <input type="text" name="title_Value" class="textBox" id = "makePostTitle">
-        <input type="text" name="content_Value" class="textBox" id = "makePostContent">
+    <form action = "../action/makePostAction.jsp" id="form">
+        <input type="text" name="title" class="textBox" id = "postTitle">
+        <input type="text" name="content" class="textBox" id = "postContent">
     </form>
     <script>
-        function uploadPostEvent() {
+        function makePostEvent() {
             // 폼 요소를 JavaScript로 가져오기
             var form = document.getElementById("form");
-            var postTitle = document.getElementById("makePostTitle");
-            var postTitleText = postTitle.value;
-
-            var postContent = document.getElementById("makePostContent");
-            var postContentText = postContent.value;
-            // 폼을 제출
-            if(postTitleText.trim == "" || postContentText.trim() == "") {
+            var postTitle = document.getElementById("postTitle").value;
+            var postContent = document.getElementById("postContent").value;
+            
+            if(postTitle.trim() == "" || postContent.trim() == "") {
                 alert("내용을 입력해주세요.")
                 return false;
             }
+            // 폼을 제출
             else {form.submit();
             }
         }

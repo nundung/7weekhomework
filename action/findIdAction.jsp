@@ -23,8 +23,9 @@
     ResultSet result = query.executeQuery();
 
     String id = null;
+
     while (result.next()) {
-    id = result.getString(3);
+        id = result.getString(3);
     }
 %>
 
@@ -36,9 +37,9 @@
 <body>
     <script>
         var id = "<%=id%>";
-        if (id == "null" ) {
+        if (id === "null" ) {
             alert("해당번호로 가입된 아이디가 없습니다.");
-            location.href = "../index.jsp";
+            location.reload();
         }
         else {
             alert("회원님의 아이디는 " + id + " 입니다.");

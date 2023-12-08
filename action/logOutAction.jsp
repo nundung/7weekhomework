@@ -11,6 +11,6 @@
 </head>
 <body>
     <script>
-        location.href = "../page/post.jsp"
+        location.href = "../index.jsp"
     </script>
 </body>
